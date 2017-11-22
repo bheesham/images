@@ -25,3 +25,5 @@ RUN apt update && \
     rm -rf /root/.opam && \
     apt remove -y make pkg-config patch gcc ocaml perl m4 opam && \
     apt autoremove -y
+
+WORKDIR /
