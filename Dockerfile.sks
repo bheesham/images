@@ -6,7 +6,7 @@ WORKDIR /usr/local/src
 RUN apt update && \
     apt install -y wget gnupg libdb-dev zlib1g-dev libgmp-dev make pkg-config patch gcc ocaml perl m4 opam nginx && \
     wget https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.6.tgz && \
-    wget  https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.6.tgz.asc && \
+    wget https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.6.tgz.asc && \
     gpg --keyserver pool.sks-keyservers.net --trust-model always --recv-key 0x41259773973A612A && \
     gpg --keyid-format long --fingerprint 0x41259773973A612A | grep "C90E F143 0B3A C0DF D00E  6EA5 4125 9773 973A 612A" && \
     gpg --keyid-format long --verify sks-1.1.6.tgz.asc && \
@@ -20,6 +20,8 @@ RUN apt update && \
     make dep && \
     make all && \
     make install && \
+    cd / && \
+    rm -rf /usr/local/src && \
     rm -rf /root/.opam && \
     apt remove -y make pkg-config patch gcc ocaml perl m4 opam && \
     apt autoremove -y
