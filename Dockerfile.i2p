@@ -1,0 +1,10 @@
+FROM ubuntu:xenial
+MAINTAINER Bheesham Persaud <me@bheesham.com>
+
+WORKDIR /usr/local/src
+
+RUN echo "deb http://ppa.launchpad.net/i2p-maintainers/i2p/ubuntu xenial main" >> /etc/apt/sources.list && \
+    apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 0xAB9660B9EB2CC88B && \
+    apt-key finger | grep "474B C465 76FA E76E 97C1  A1A1 AB96 60B9 EB2C C88B" && \
+    apt update && \
+    apt install -y i2p
